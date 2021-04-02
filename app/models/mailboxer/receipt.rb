@@ -108,6 +108,11 @@ class Mailboxer::Receipt < ActiveRecord::Base
     update_attributes(:trashed => false)
   end
 
+  #Marks the receipt as not pinned
+  def mark_as_pinned
+    update_attributes(:pinned => true)
+  end
+
   #Moves the receipt to inbox
   def move_to_inbox
     update_attributes(:mailbox_type => :inbox, :trashed => false)
