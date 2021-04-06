@@ -29,6 +29,7 @@ class Mailboxer::Receipt < ActiveRecord::Base
   scope :not_deleted, lambda { where(:deleted => false) }
   scope :is_read, lambda { where(:is_read => true) }
   scope :is_unread, lambda { where(:is_read => false) }
+  scope :is_pinned, lambda { where(:is_pinned => true) }
 
   class << self
     #Marks all the receipts from the relation as read
@@ -74,6 +75,11 @@ class Mailboxer::Receipt < ActiveRecord::Base
     def update_receipts(updates, options={})
       ids = where(options).pluck(:id)
       Mailboxer::Receipt.where(:id => ids).update_all(updates) unless ids.empty?
+    end
+
+    #Marks the receipt as pinned
+    def mark_as_pinned(options={})
+      update_receipts({:is_pinned => false}, options)
     end
   end
 
