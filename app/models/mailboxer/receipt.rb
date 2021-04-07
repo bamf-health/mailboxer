@@ -22,6 +22,7 @@ class Mailboxer::Receipt < ActiveRecord::Base
     joins(:message).where(:mailboxer_notifications => { :conversation_id => conversation.id })
   }
   scope :sentbox, lambda { where(:mailbox_type => "sentbox") }
+  scope :archived, lambda { where(:mailbox_type => "archived") }
   scope :inbox, lambda { where(:mailbox_type => "inbox") }
   scope :trash, lambda { where(:trashed => true, :deleted => false) }
   scope :not_trash, lambda { where(:trashed => false) }
