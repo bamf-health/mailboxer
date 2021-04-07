@@ -127,7 +127,7 @@ class Mailboxer::Receipt < ActiveRecord::Base
 
   #Moves the receipt to archive
   def move_to_archive
-    update_attributes(:mailbox_type => :archived, :trashed => false)
+    update(:mailbox_type => :archive, :trashed => false)
   end
 
 
