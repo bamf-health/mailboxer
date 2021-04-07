@@ -23,6 +23,7 @@ class Mailboxer::Receipt < ActiveRecord::Base
   }
   scope :sentbox, lambda { where(:mailbox_type => "sentbox") }
   scope :inbox, lambda { where(:mailbox_type => "inbox") }
+  scope :archive, lambda { where(:mailbox_type => "archive") }
   scope :trash, lambda { where(:trashed => true, :deleted => false) }
   scope :not_trash, lambda { where(:trashed => false) }
   scope :deleted, lambda { where(:deleted => true) }
@@ -70,6 +71,12 @@ class Mailboxer::Receipt < ActiveRecord::Base
     def move_to_sentbox(options={})
       update_receipts({:mailbox_type => :sentbox, :trashed => false}, options)
     end
+
+    #Moves all the receipts from the relation to archive
+    def move_to_archive(options={})
+      update_receipts({:mailbox_type => :archive, :trashed => false}, options)
+    end
+
 
     def update_receipts(updates, options={})
       ids = where(options).pluck(:id)
@@ -122,6 +129,12 @@ class Mailboxer::Receipt < ActiveRecord::Base
   def move_to_sentbox
     update(:mailbox_type => :sentbox, :trashed => false)
   end
+
+  #Moves the receipt to archive
+  def move_to_archive
+    update_attributes(:mailbox_type => :archived, :trashed => false)
+  end
+
 
   #Returns the conversation associated to the receipt if the notification is a Message
   def conversation

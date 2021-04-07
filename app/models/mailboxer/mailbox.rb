@@ -60,6 +60,14 @@ class Mailboxer::Mailbox
     conversations(options)
   end
 
+  #Returns the conversations in the archive of messageable
+  #
+  #Same as conversations({:mailbox_type => 'archive'})
+  def archive(options={})
+    options = options.merge(:mailbox_type => 'archive')
+    conversations(options)
+  end
+
   #Returns the conversations in the trash of messageable
   #
   #Same as conversations({:mailbox_type => 'trash'})
@@ -120,6 +128,8 @@ class Mailboxer::Mailbox
       Mailboxer::Conversation.inbox(messageable)
     when 'sentbox'
       Mailboxer::Conversation.sentbox(messageable)
+    when 'archive'
+      Mailboxer::Conversation.archive(messageable)
     when 'trash'
       Mailboxer::Conversation.trash(messageable)
     when  'not_trash'
