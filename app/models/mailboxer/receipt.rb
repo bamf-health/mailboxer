@@ -79,6 +79,10 @@ class Mailboxer::Receipt < ActiveRecord::Base
 
     #Marks the receipt as pinned
     def mark_as_pinned(options={})
+      update_receipts({:is_pinned => true}, options)
+    end
+
+    def mark_as_unpinned(options={})
       update_receipts({:is_pinned => false}, options)
     end
   end
@@ -115,6 +119,10 @@ class Mailboxer::Receipt < ActiveRecord::Base
   end
 
   #Marks the receipt as not pinned
+  def mark_as_unpinned
+    update(:is_pinned => false)
+  end
+
   def mark_as_pinned
     update(:is_pinned => true)
   end
