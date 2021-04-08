@@ -79,6 +79,10 @@ class Mailboxer::Receipt < ActiveRecord::Base
 
     #Marks the receipt as pinned
     def mark_as_pinned(options={})
+      update_receipts({:is_pinned => true}, options)
+    end
+
+    def mark_as_unpinned(options={})
       update_receipts({:is_pinned => false}, options)
     end
   end
@@ -86,47 +90,51 @@ class Mailboxer::Receipt < ActiveRecord::Base
 
   #Marks the receipt as deleted
   def mark_as_deleted
-    update_attributes(:deleted => true)
+    update(:deleted => true)
   end
 
   #Marks the receipt as not deleted
   def mark_as_not_deleted
-    update_attributes(:deleted => false)
+    update(:deleted => false)
   end
 
   #Marks the receipt as read
   def mark_as_read
-    update_attributes(:is_read => true)
+    update(:is_read => true)
   end
 
   #Marks the receipt as unread
   def mark_as_unread
-    update_attributes(:is_read => false)
+    update(:is_read => false)
   end
 
   #Marks the receipt as trashed
   def move_to_trash
-    update_attributes(:trashed => true)
+    update(:trashed => true)
   end
 
   #Marks the receipt as not trashed
   def untrash
-    update_attributes(:trashed => false)
+    update(:trashed => false)
   end
 
   #Marks the receipt as not pinned
+  def mark_as_unpinned
+    update(:is_pinned => false)
+  end
+
   def mark_as_pinned
-    update_attributes(:pinned => true)
+    update(:is_pinned => true)
   end
 
   #Moves the receipt to inbox
   def move_to_inbox
-    update_attributes(:mailbox_type => :inbox, :trashed => false)
+    update(:mailbox_type => :inbox, :trashed => false)
   end
 
   #Moves the receipt to sentbox
   def move_to_sentbox
-    update_attributes(:mailbox_type => :sentbox, :trashed => false)
+    update(:mailbox_type => :sentbox, :trashed => false)
   end
 
   #Returns the conversation associated to the receipt if the notification is a Message
