@@ -157,8 +157,8 @@ class Mailboxer::Receipt < ActiveRecord::Base
 
   if Mailboxer.search_enabled
     if Mailboxer.search_engine == :pg_search
-      include PgSearch
-      pg_search_scope :search, associated_against: { message: { subject: 'A', body: 'B' } }, using: :tsearch
+      include PgSearch::Model
+      pg_search_scope :search, associated_against: { message: { subject: 'A', body: 'B' } }, using: { tsearch: { prefix: true, negation: true, dictionary: "english" } }
     else
       searchable do
         text :subject, :boost => 5 do
