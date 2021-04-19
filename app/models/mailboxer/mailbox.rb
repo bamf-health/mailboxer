@@ -30,6 +30,7 @@ class Mailboxer::Mailbox
   #  * "inbox"
   #  * "sentbox"
   #  * "trash"
+  #  * "archive"
   #
   #* :read=false
   #* :unread=true
