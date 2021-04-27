@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe Mailboxer::NotificationMailer do
   before do
-    @entity1 = FactoryGirl.create(:user)
-    @entity2 = FactoryGirl.create(:duck)
-    @entity3 = FactoryGirl.create(:cylon)
+    @entity1 = FactoryBot.create(:user)
+    @entity2 = FactoryBot.create(:duck)
+    @entity3 = FactoryBot.create(:cylon)
     @receipt1 = Mailboxer::Notification.notify_all([@entity1,@entity2,@entity3],"Subject", "Body Body Body Body Body Body Body Body Body Body Body Body")
   end
 

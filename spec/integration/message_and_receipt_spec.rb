@@ -4,8 +4,8 @@ describe "Messages And Mailboxer::Receipts", type: :integration do
 
   describe "two equal entities" do
     before do
-      @entity1 = FactoryGirl.create(:user)
-      @entity2 = FactoryGirl.create(:user)
+      @entity1 = FactoryBot.create(:user)
+      @entity2 = FactoryBot.create(:user)
     end
 
     describe "message sending" do
@@ -190,8 +190,8 @@ describe "Messages And Mailboxer::Receipts", type: :integration do
 
   describe "two different entities" do
     before do
-      @entity1 = FactoryGirl.create(:user)
-      @entity2 = FactoryGirl.create(:duck)
+      @entity1 = FactoryBot.create(:user)
+      @entity2 = FactoryBot.create(:duck)
     end
 
     describe "message sending" do
@@ -352,9 +352,9 @@ describe "Messages And Mailboxer::Receipts", type: :integration do
 
   describe "three equal entities" do
     before do
-      @entity1 = FactoryGirl.create(:user)
-      @entity2 = FactoryGirl.create(:user)
-      @entity3 = FactoryGirl.create(:user)
+      @entity1 = FactoryBot.create(:user)
+      @entity2 = FactoryBot.create(:user)
+      @entity3 = FactoryBot.create(:user)
       @recipients = Array.new
       @recipients << @entity2
       @recipients << @entity3
@@ -534,9 +534,9 @@ describe "Messages And Mailboxer::Receipts", type: :integration do
 
   describe "three different entities" do
     before do
-      @entity1 = FactoryGirl.create(:user)
-      @entity2 = FactoryGirl.create(:duck)
-      @entity3 = FactoryGirl.create(:cylon)
+      @entity1 = FactoryBot.create(:user)
+      @entity2 = FactoryBot.create(:duck)
+      @entity3 = FactoryBot.create(:cylon)
       @recipients = Array.new
       @recipients << @entity2
       @recipients << @entity3
@@ -717,8 +717,8 @@ describe "Messages And Mailboxer::Receipts", type: :integration do
 
   describe "two STI entities" do
     before do
-      @entity1 = FactoryGirl.create(:user)
-      @entity2 = FactoryGirl.create(:user)
+      @entity1 = FactoryBot.create(:user)
+      @entity2 = FactoryBot.create(:user)
     end
 
     describe "message sending" do

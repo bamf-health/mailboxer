@@ -3,9 +3,9 @@ require 'spec_helper'
 describe Mailboxer::Notification do
 
   before do
-    @entity1 = FactoryGirl.create(:user)
-    @entity2 = FactoryGirl.create(:user)
-    @entity3 = FactoryGirl.create(:user)
+    @entity1 = FactoryBot.create(:user)
+    @entity2 = FactoryBot.create(:user)
+    @entity3 = FactoryBot.create(:user)
   end
 
   it { should validate_presence_of :body }
@@ -125,7 +125,7 @@ describe Mailboxer::Notification do
   end
 
   describe "scopes" do
-    let(:scope_user) { FactoryGirl.create(:user) }
+    let(:scope_user) { FactoryBot.create(:user) }
     let!(:notification) { scope_user.send(Mailboxer.notify_method, "Body", "Subject").notification }
 
     describe ".unread" do

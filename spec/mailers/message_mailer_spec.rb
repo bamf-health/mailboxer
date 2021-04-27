@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe Mailboxer::MessageMailer do
   shared_examples 'message_mailer' do
-    let(:sender) { FactoryGirl.create(:user) }
-    let(:entity1) { FactoryGirl.create(:user) }
-    let(:entity2) { FactoryGirl.create(:duck) }
-    let(:entity3) { FactoryGirl.create(:cylon) }
+    let(:sender) { FactoryBot.create(:user) }
+    let(:entity1) { FactoryBot.create(:user) }
+    let(:entity2) { FactoryBot.create(:duck) }
+    let(:entity3) { FactoryBot.create(:cylon) }
 
     def sent_to?(entity)
       ActionMailer::Base.deliveries.any? do |email|

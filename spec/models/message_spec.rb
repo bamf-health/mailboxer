@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Mailboxer::Message do
   before do
     ActionMailer::Base.deliveries.clear
-    @entity1 = FactoryGirl.create(:user)
-    @entity2 = FactoryGirl.create(:user)
+    @entity1 = FactoryBot.create(:user)
+    @entity2 = FactoryBot.create(:user)
   end
 
   context "with errors" do
@@ -26,8 +26,8 @@ describe Mailboxer::Message do
 
     before do
       ActionMailer::Base.deliveries.clear
-      @entity1 = FactoryGirl.create(:user)
-      @entity2 = FactoryGirl.create(:user)
+      @entity1 = FactoryBot.create(:user)
+      @entity2 = FactoryBot.create(:user)
       @receipt1 = @entity1.send_message(@entity2,"Body","Subject")
       @message1 = @receipt1.notification
     end

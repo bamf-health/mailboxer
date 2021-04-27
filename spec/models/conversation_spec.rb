@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Mailboxer::Conversation do
 
-  let!(:entity1)  { FactoryGirl.create(:user) }
-  let!(:entity2)  { FactoryGirl.create(:user) }
+  let!(:entity1)  { FactoryBot.create(:user) }
+  let!(:entity2)  { FactoryBot.create(:user) }
   let!(:receipt1) { entity1.send_message(entity2,"Body","Subject") }
   let!(:receipt2) { entity2.reply_to_all(receipt1,"Reply body 1") }
   let!(:receipt3) { entity1.reply_to_all(receipt2,"Reply body 2") }
@@ -62,7 +62,7 @@ describe Mailboxer::Conversation do
   end
 
   it "should be able to add a new participant" do
-    new_user = FactoryGirl.create(:user)
+    new_user = FactoryBot.create(:user)
     conversation.add_participant(new_user)
     expect(conversation.participants.count).to eq 3
     expect(conversation.participants).to include(new_user, entity1, entity2)
@@ -70,7 +70,7 @@ describe Mailboxer::Conversation do
   end
 
   it "should deliver messages to new participants" do
-    new_user = FactoryGirl.create(:user)
+    new_user = FactoryBot.create(:user)
     conversation.add_participant(new_user)
     expect{
       receipt5 = entity1.reply_to_all(receipt4,"Reply body 4")
@@ -78,8 +78,8 @@ describe Mailboxer::Conversation do
   end
 
   describe "scopes" do
-    let(:participant) { FactoryGirl.create(:user) }
-    let(:entity3) { FactoryGirl.create(:user)}
+    let(:participant) { FactoryBot.create(:user) }
+    let(:entity3) { FactoryBot.create(:user)}
     let!(:inbox_conversation) { entity1.send_message(participant, "Body", "Subject").notification.conversation }
     let!(:sentbox_conversation) { participant.send_message(entity1, "Body", "Subject").notification.conversation }
     let!(:conversation_with_multiple_entities) {entity1.send_message([participant, entity3], "Body", "Subject").notification.conversation}

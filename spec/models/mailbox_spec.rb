@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Mailboxer::Mailbox do
 
   before do
-    @entity1 = FactoryGirl.create(:user)
-    @entity2 = FactoryGirl.create(:user)
+    @entity1 = FactoryBot.create(:user)
+    @entity2 = FactoryBot.create(:user)
     @receipt1 = @entity1.send_message(@entity2,"Body","Subject")
     @receipt2 = @entity2.reply_to_all(@receipt1,"Reply body 1")
     @receipt3 = @entity1.reply_to_all(@receipt2,"Reply body 2")
@@ -146,8 +146,8 @@ describe Mailboxer::Mailbox do
 
   context "STI models" do
     before do
-      @sti_entity1 = FactoryGirl.create(:user)
-      @sti_entity2 = FactoryGirl.create(:user)
+      @sti_entity1 = FactoryBot.create(:user)
+      @sti_entity2 = FactoryBot.create(:user)
       @sti_mail = @sti_entity1.send_message(@sti_entity2, "Body", "Subject")
     end
 

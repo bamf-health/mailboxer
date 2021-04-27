@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :duck do
     sequence :name do |n|
       "Duck #{ n }"

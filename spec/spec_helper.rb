@@ -32,7 +32,7 @@ end
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 # Load Factories
-require 'factory_girl'
+require 'factory_bot'
 Dir["#{File.dirname(__FILE__)}/factories/*.rb"].each {|f| require f}
 
 # Shoulda Matchers

@@ -3,8 +3,8 @@ require 'spec_helper'
 describe "Mailboxer::Models::Messageable through User" do
 
   before do
-    @entity1 = FactoryGirl.create(:user)
-    @entity2 = FactoryGirl.create(:user)
+    @entity1 = FactoryBot.create(:user)
+    @entity2 = FactoryBot.create(:user)
   end
 
   it "should have a mailbox" do

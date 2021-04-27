@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-collection_matchers', '~> 1.1'
   s.add_development_dependency('appraisal', '~> 1.0.0')
   s.add_development_dependency('shoulda-matchers', '~> 2')
-  s.add_development_dependency('factory_girl', '~> 2.6.0')
+  s.add_development_dependency('factory_bot', '~> 6.1.0')
   # Population
   s.add_development_dependency('forgery', '>= 0.3.6')
   # Integration testing

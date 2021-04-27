@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Mailboxer::Receipt do
 
   before do
-    @entity1 = FactoryGirl.create(:user)
-    @entity2 = FactoryGirl.create(:user)
+    @entity1 = FactoryBot.create(:user)
+    @entity2 = FactoryBot.create(:user)
     @mail1 = @entity1.send_message(@entity2,"Body","Subject")
   end
 
@@ -43,8 +43,8 @@ describe Mailboxer::Receipt do
 
   context "STI models" do
     before do
-      @entity3 = FactoryGirl.create(:user)
-      @entity4 = FactoryGirl.create(:user)
+      @entity3 = FactoryBot.create(:user)
+      @entity4 = FactoryBot.create(:user)
       @mail2 = @entity3.send_message(@entity4, "Body", "Subject")
     end
 
