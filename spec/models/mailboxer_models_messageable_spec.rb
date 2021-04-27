@@ -313,6 +313,16 @@ describe "Mailboxer::Models::Messageable through User" do
     expect(@conversation.messages.first.attachments.first.filename).to eq 'testfile.txt'
   end
 
+  it "should be able to read multiple attachments" do
+    @receipt = @entity1.send_message(@entity2, "Body", "Subject", nil, [
+                                       { io: File.open('spec/testfile.txt'), filename: 'testfile.txt' },
+                                       { io: File.open('spec/testfile2.txt'), filename: 'testfile2.txt' }
+                                     ])
+    @conversation = @receipt.conversation
+    expect(@conversation.messages.first.attachments.first.filename).to eq 'testfile.txt'
+    expect(@conversation.messages.first.attachments.second.filename).to eq 'testfile2.txt'
+  end
+
   it "should be the same message time as passed" do
     message_time = 5.days.ago
     receipt = @entity1.send_message(@entity2, "Body", "Subject", nil, nil, message_time)
