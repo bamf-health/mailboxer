@@ -2,6 +2,8 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+puts ActiveRecord::Migration.inspect
+
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 require "mailboxer"
 
