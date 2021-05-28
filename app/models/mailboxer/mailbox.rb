@@ -61,6 +61,14 @@ class Mailboxer::Mailbox
     conversations(options)
   end
 
+  #Returns the conversations in the pinned of messageable
+  #
+  #Same as conversations({:mailbox_type => 'pinned'})
+  def pinned(options={})
+    options = options.merge(:mailbox_type => 'pinned')
+    conversations(options)
+  end
+
   #Returns the conversations in the archive of messageable
   #
   #Same as conversations({:mailbox_type => 'archive'})
@@ -125,6 +133,8 @@ class Mailboxer::Mailbox
 
   def get_conversations(mailbox)
     case mailbox
+    when 'pinned'
+      Mailboxer::Conversation.pinned(messageable)
     when 'inbox'
       Mailboxer::Conversation.inbox(messageable)
     when 'sentbox'

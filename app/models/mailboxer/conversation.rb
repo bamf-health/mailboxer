@@ -17,6 +17,9 @@ class Mailboxer::Conversation < ActiveRecord::Base
     order(updated_at: :desc).
     joins(:receipts).merge(Mailboxer::Receipt.recipient(participant)).distinct
   }
+  scope :pinned, lambda {|participant|
+    participant(participant).merge(Mailboxer::Receipt.is_pinned.not_trash.not_deleted)
+  }
   scope :inbox, lambda {|participant|
     participant(participant).merge(Mailboxer::Receipt.inbox.not_trash.not_deleted)
   }
