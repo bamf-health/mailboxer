@@ -5,7 +5,7 @@ class Mailboxer::Conversation < ActiveRecord::Base
 
   has_many :opt_outs, :dependent => :destroy, :class_name => "Mailboxer::Conversation::OptOut"
   has_many :messages, :dependent => :destroy, :class_name => "Mailboxer::Message"
-  has_many :receipts, :through => :messages,  :class_name => "Mailboxer::Receipt"
+  has_many :receipts, -> { order 'created_at' }, :through => :messages,  :class_name => "Mailboxer::Receipt"
 
   validates :subject, :presence => true,
                       :length => { :maximum => Mailboxer.subject_max_length }
